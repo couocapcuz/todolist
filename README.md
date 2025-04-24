@@ -5,19 +5,29 @@ Aplikasi sederhana berbasis PHP untuk mencatat tugas harian
 
 ## Fitur
 - Tambah Tugas
-- Tandai Tugas Selesai
-- Hapus tugas
+- Tandai Tugas Selesai (ubah status)
+- Hapus Tugas
 
 ## Struktur Folder
-- `index.php` -  Halaman Utama memakai session
-- `index_db.php` -  Halaman yang memakai DB
-- `assets/` - Menyimpan file bootstrap.min.css
-- `todolist.sql` - database
+- `index.php` - Halaman utama menggunakan session
+- `index_db.php` - Halaman dengan penyimpanan database
+- `assets/` - Berisi file `bootstrap.min.css` dan screenshot (jika ada)
+- `todolist.sql` - Struktur database MySQL
 
-## Cara menjalankan
-1. Salin folder ke `htdocs\`
-2. Jalankan XAMPP dan buka di `http://localhost/todolist`
-3. Kalau mau pakai database maka harus export sql yang yang bernama todolist.sql
+## Cara Menjalankan
+1. Salin folder ke `htdocs\` (jika pakai XAMPP)
+2. Jalankan XAMPP dan buka `http://localhost/todolist`
+3. Untuk versi database:
+   - Buat database baru `todolist_db`
+   - Import file `todolist.sql` via phpMyAdmin
+
+## Teknologi yang Digunakan
+- PHP (native)
+- MySQL
+- Bootstrap 5
+
+## Pratinjau
+![Screenshot](assets/screenshot.png)
 
 ## Kontributor
 - [Rahmat Hidayat - 40622200003](https://github.com/couocapcuz/todolist)
