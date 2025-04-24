@@ -55,8 +55,9 @@ $tasks = $conn->query("SELECT * FROM tasks ORDER BY id DESC");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rahmat Hidayat - 40622200003</title>
     <link href="/todolist/assets/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="/todolist/assets/animate.min.css"/>
     <style>
+      /* Menambahkan animasi */
         .task-item {
             transition: transform 0.2s, background-color 0.2s;
         }
@@ -143,7 +144,7 @@ $tasks = $conn->query("SELECT * FROM tasks ORDER BY id DESC");
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="/todolist/assets/bootstrap.bundle.min.js" ></script>
 </body>
 </html>
 <?php $conn->close(); ?>
