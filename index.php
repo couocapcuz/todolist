@@ -59,14 +59,14 @@ function tampilkanDaftar($tasks) {
         $statusClass = $task["status"] === "selesai" ? "text-decoration-line-through text-muted" : "";
         $statusText = $task["status"] === "selesai" ? "✅ Selesai" : "❗ Belum";
 
-        echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
+        echo '<li class="list-group-item d-flex justify-content-between align-items-center animate__animated animate__fadeIn task-item">';
         
         echo <<<HTML
         <form method="POST" class="d-flex align-items-center gap-2 w-100">
             <input type="hidden" name="toggle" value="{$task['id']}">
-            <input type="checkbox" onChange="this.form.submit()" $checked>
-            <span class="flex-grow-1 {$statusClass}">{$task['title']}</span>
-            <span class="badge bg-secondary" style="margin-right:10px;">{$statusText}</span>
+            <input type="checkbox" onChange="this.form.submit()" $checked class="form-check-input">
+            <span class="flex-grow-1 $statusClass">{$task['title']}</span>
+            <span class="badge bg-secondary">$statusText</span>
         </form>
         HTML;
 
@@ -83,39 +83,81 @@ function tampilkanDaftar($tasks) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Rahmat Hidayat - 40622200003</title>
-  <link href="/todolist/assets/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahmat Hidayat - 40622200003</title>
+    <link href="/todolist/assets/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        .task-item {
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .task-item:hover {
+            transform: scale(1.02);
+            background-color: #f8f9fa;
+        }
+        .card {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-success, .btn-danger {
+            transition: transform 0.2s;
+        }
+        .btn-success:hover, .btn-danger:hover {
+            transform: translateY(-2px);
+        }
+        .alert {
+            animation: fadeInDown 0.5s;
+        }
+    </style>
 </head>
 <body class="bg-light">
-<div class="container py-5">
-  <h1 class="mb-4 text-center">To-Do List</h1>
+    <div class="container py-5">
+        <!-- Header -->
+        <div class="text-center mb-4">
+            <h1 class="display-4 fw-bold animate__animated animate__bounceIn">To-Do List</h1>
+            <p class="text-muted">Rahmat Hidayat - 40622200003</p>
+        </div>
 
-  <!-- Alert Error -->
-  <?php if ($error): ?>
-    <div class="alert alert-danger text-center"><?= $error ?></div>
-  <?php endif; ?>
+        <!-- Error Alert -->
+        <?php if ($error): ?>
+            <div class="alert alert-danger alert-dismissible fade show animate__animated animate__fadeInDown" role="alert">
+                <?= $error ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
 
-  <!-- Form Tambah Tugas -->
-  <form method="POST" class="mb-4">
-    <div class="input-group">
-      <input type="text" name="title" class="form-control" placeholder="Tambahkan tugas baru..." required>
-      <button class="btn btn-success" type="submit">Tambah</button>
+        <!-- Form Card -->
+        <div class="card mb-4 animate__animated animate__fadeIn">
+            <div class="card-body">
+                <h5 class="card-title">Tambah Tugas Baru</h5>
+                <form method="POST" class="input-group">
+                    <input type="text" name="title" class="form-control" placeholder="Tambahkan tugas baru..." required>
+                    <button class="btn btn-success" type="submit">Tambah</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Task List Card -->
+        <div class="card animate__animated animate__fadeIn">
+            <div class="card-body">
+                <h5 class="card-title">Daftar Tugas</h5>
+                <?php if (empty($tasks)): ?>
+                    <div class="alert alert-warning text-center animate__animated animate__fadeIn">
+                        Belum ada tugas. Silakan tambahkan tugas baru!
+                    </div>
+                <?php else: ?>
+                    <ul class="list-group list-group-flush">
+                        <?php tampilkanDaftar($tasks); ?>
+                    </ul>
+                <?php endif; ?>
+            </div>
+        </div>
     </div>
-  </form>
 
-  <!-- Daftar Tugas -->
-  <?php if (empty($tasks)): ?>
-    <div class="alert alert-warning text-center">Belum ada tugas. Silakan tambahkan tugas baru!</div>
-  <?php else: ?>
-    <ul class="list-group">
-      <?php tampilkanDaftar($tasks); ?>
-    </ul>
-  <?php endif; ?>
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
